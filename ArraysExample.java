@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ArraysExample
 {
@@ -159,7 +158,84 @@ public class ArraysExample
 
    }
 
-    public static void main(String[] args)
+
+   public static int largestSubArrayWithSumK(int arr[] , int k)
+   {
+       /*
+       // 1st approach TC =O(n2)
+
+       //int sum = 0;
+       int len = 0;
+
+       for(int i=0; i<arr.length;i++)
+       {
+           int s = 0;
+
+
+               for ( int j = i; j < arr.length; j++)
+               {
+                   s += arr[j];
+                    if(s == k )
+                    {
+                        len = Math.max(len,j-i+1);
+                    }
+               }
+           }
+       return  len;   */
+
+
+
+       // 2nd Approach
+       int n = arr.length;
+       int left=0;
+       int right = 0;
+       int maxLen = 0;
+       int sum = arr[0];
+
+       while(right < n)
+       {
+            while (left <= right && sum > k)
+            {
+                sum -= arr[left];
+                left++;
+            }
+
+            if(sum == k)
+            {
+                maxLen = Math.max(maxLen , right -left +1);
+            }
+
+            right++;
+
+            if(right < n)
+            {
+                sum += arr[right];
+            }
+       }
+
+       return  maxLen;
+   }
+
+   public static  int fibonacciNumber(int n)
+   {
+       int a1 = 0;
+       int a2 = 1;
+       int temp = 0;
+
+
+       for(int i=2; i<=n ; i++)
+       {
+            temp = a1 + a2;
+           System.out.println("a1 = "+a1 + " a2 = "+a2 + " temp = "+temp);
+
+           a1 = a2;
+           a2 = temp;
+          // System.out.println("a1 = "+a1 + " a2 = "+a2 + " temp = "+temp);
+       }
+       return temp;
+   }
+
+    public static void main1(String[] args)
     {
         // 1
 //        int arr1[] = {2,3,5};
@@ -190,5 +266,32 @@ public class ArraysExample
             findNumberOccureOnce(arr);
 
 
+    }
+
+    public static void main2(String[] args)
+    {
+        int arr[] = {1, 2, -1 ,-2,3,1,1,6};
+        int k =3;
+        int res=largestSubArrayWithSumK(arr,k);
+        System.out.println(res);
+    }
+
+    public static void main(String[] args)
+    {
+
+        int n = 5;
+        System.out.println(fibonacciNumber(n));
+
+        int arr[]  = {2,4,5,6,7,8,9,12,13,15};
+       // List<Integer> list2 =new ArrayList<>{2 , 3,2,1,3,43,3,2,34,3,2,53};
+
+
+
+       // List<Integer> list= Arrays.stream(arr).boxed().filter(i -> i%2==0).collect(Collectors.toList());
+        System.out.println("new List");
+          Arrays.stream(arr).boxed().filter(i -> i%2 == 0).collect(Collectors.toList()).forEach(i -> System.out.print(i + " , "));
+      //  System.out.println(list);
+        System.out.println("Index of hash value = ");
+        System.out.println(412&10);
     }
 }
