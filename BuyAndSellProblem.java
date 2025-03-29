@@ -36,7 +36,7 @@ public class BuyAndSellProblem
             {
                 int len = arr[i] - arr[j];
                 maxLen = Math.max(maxLen , len);
-             //   j++;
+                //   j++;
             }
             else
             {

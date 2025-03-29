@@ -10,7 +10,7 @@ public class NumberTOString {
     {
 
         String s[] = str.split(" ");
-        System.out.println(s.toString());
+       // System.out.println(s.toString());
 
         for(String numStr : s) {
             try {
@@ -30,23 +30,29 @@ public class NumberTOString {
         }
     }
 
+    public static  void magicBoard(int num[])
+    {
+       // System.out.println(num.length);
+        for(int i=0 ; i<num.length ; i++)
+        {
+            int n = num[i];
+            char ch = (char)(n);
+
+            System.out.println(ch);
+
+        }
+    }
+
 
     public static void main(String[] args) throws IOException {
         String arr[]= {"65", "66","67"};
         String str = "65 66 67";
-        magicBoard(str);
+        //magicBoard(str);
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int num ;
-        num = Integer.parseInt(br.readLine());
-        System.out.println(num);
+        //int num[] = {65,66,67};
+        int num[] = {97,99,103};
+        magicBoard(num);
 
-        Scanner sc = new Scanner(System.in);
-
-        int n = sc.nextInt();
-        String name = sc.next();
-
-        System.out.println(n +" "+ name);
     }
 }
